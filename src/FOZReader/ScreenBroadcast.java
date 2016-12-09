@@ -6,7 +6,10 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
 import com.sun.net.httpserver.Headers;
@@ -18,7 +21,7 @@ class MyIndexHandler implements HttpHandler {
 	public void handle(HttpExchange t) throws IOException {
 		
 		String response = new Scanner(new File("template/index.html")).useDelimiter("\\Z").next();
-				t.sendResponseHeaders(200, response.length());
+		t.sendResponseHeaders(200, response.length());
 		OutputStream os = t.getResponseBody();
 		os.write(response.getBytes());
 		os.close();
@@ -44,18 +47,44 @@ class MyImageHandler implements HttpHandler {
 }
 
 public class ScreenBroadcast {
-
-	public static void main(String[] args) throws IOException, InterruptedException {
-		ScreenShot s = new ScreenShot();
-		
-		s.multiCapture("tmp/", 200);		
-		
-		
-		HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
+	int port = 7000;
+	String address;
+	HttpServer server;
+	
+	public void setAddress(String a) {
+		address = a;
+	}
+	
+	public void setPort(int p) {
+		port = p;
+	}
+	
+	public String getIPAddress() {
+		try {
+			return InetAddress.getLocalHost().getHostAddress() + ":" + port;
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public void start() {
+		System.out.println("Started");
+		try {
+			//server = HttpServer.create(new InetSocketAddress(new Inet4Address(address), port), 0);
+			server = HttpServer.create(new InetSocketAddress(port), 0);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		server.createContext("/", new MyIndexHandler());
 		server.createContext("/image.jpg", new MyImageHandler());
 		server.setExecutor(null); // creates a default executor
 		server.start();
+	}
+	
+	public void stop() {
+		server.stop(0);
 	}
 }
 
