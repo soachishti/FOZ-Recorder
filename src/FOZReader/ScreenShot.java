@@ -79,13 +79,13 @@ public class ScreenShot {
 		try {
 			// Current image
 			ImageWriter imgWriterC =(ImageWriter) ImageIO.getImageWritersByFormatName("jpg").next();
-			File fileC = new File(dir.getAbsolutePath()+"/current.jpg");
+			File fileC = new File(dir.getAbsolutePath()+"/../current.jpg");
 			ImageOutputStream imgOutStrmC = ImageIO.createImageOutputStream(fileC);
 			imgWriterC.setOutput(imgOutStrmC);
 			
 			// Save Images
 			ImageWriter imgWriter =(ImageWriter) ImageIO.getImageWritersByFormatName("jpg").next();
-			File file = new File(dir.getAbsolutePath()+"/all/"+System.currentTimeMillis()+".jpg");
+			File file = new File(dir.getAbsolutePath()+"/"+System.currentTimeMillis()+".jpg");
 			ImageOutputStream imgOutStrm = ImageIO.createImageOutputStream(file);
 			imgWriter.setOutput(imgOutStrm);
 			

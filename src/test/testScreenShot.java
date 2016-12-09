@@ -9,7 +9,7 @@ public class testScreenShot {
 		
 		s.multiCapture("tmp/", 200);
 		
-		Thread.sleep(10000);
+		Thread.sleep(60000);
 		s.stopMultiCapture();
 		
 		//s.capture();
