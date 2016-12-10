@@ -9,7 +9,8 @@ public class AudioHandle {
     AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
     TargetDataLine line;
 	
-    public AudioHandle(String absoluteFilename) {
+    
+    public void setFilename(String absoluteFilename) {
     	wavFile = new File(absoluteFilename);
     }
     
@@ -23,7 +24,7 @@ public class AudioHandle {
 	                                             channels, signed, bigEndian);
 	    return format;
 	}
-	
+
 	public void record() {
 		new Thread() {
 			public void run() {

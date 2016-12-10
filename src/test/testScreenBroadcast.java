@@ -8,7 +8,8 @@ public class testScreenBroadcast {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ScreenShot s = new ScreenShot();
-		s.multiCapture("tmp/", 200);
+		s.setMultiDirectoy("tmp/");
+		s.multiCapture();
 		
 		ScreenBroadcast sb = new ScreenBroadcast();
 		String address = sb.getIPAddress();

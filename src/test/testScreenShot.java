@@ -1,19 +1,27 @@
 package test;
 
+import java.net.MalformedURLException;
+
 import FOZReader.ScreenShot;
 
 public class testScreenShot {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, MalformedURLException {
 		ScreenShot s = new ScreenShot();
 		
-		s.multiCapture("tmp/", 200);
+		s.setMultiDirectoy("tmp/foz-1481393482646/");
+		//s.multiCapture();
 		
-		Thread.sleep(60000);
-		s.stopMultiCapture();
+		//Thread.sleep(10000);
+		//s.stopMultiCapture();
+		//s.deleteMultiImage();
 		
-		//s.capture();
-		//s.save("screenshot.png", "png");
+		System.out.println("Making video");
+		s.makeMovie("video.mov");
+		
+		//s.merging("video.mov", "audio.wav", "final.mov");
+		
+		//s.capture("screenshot.png", "png");
 		//System.out.println("Saved");
 	}
 

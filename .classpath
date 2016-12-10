@@ -5,6 +5,10 @@
 	<classpathentry kind="lib" path="libs/webcam-capture-0.3.10.jar"/>
 	<classpathentry kind="lib" path="libs/libs/bridj-0.6.2.jar"/>
 	<classpathentry kind="lib" path="libs/libs/slf4j-api-1.7.2.jar"/>
+	<classpathentry kind="lib" path="libs/jmf.jar"/>
+	<classpathentry kind="lib" path="libs/customizer.jar"/>
+	<classpathentry kind="lib" path="libs/mediaplayer.jar"/>
+	<classpathentry kind="lib" path="libs/multiplayer.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

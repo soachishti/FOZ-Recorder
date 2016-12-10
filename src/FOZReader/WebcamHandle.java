@@ -37,11 +37,13 @@ public class WebcamHandle {
 	public void size(String type) {
 		// [176x144] [320x240] [640x480]
 		
-		if (type == "small")
+		System.out.println(type);
+		
+		if (type.equals("small"))
 			d = new Dimension(176, 144);
-		else if (type == "medium")
+		else if (type.equals("medium"))
 			d = new Dimension(320, 240);
-		else if (type == "large")
+		else if (type.equals("large"))
 			d = new Dimension(640, 480);
 	}
 	
@@ -71,7 +73,7 @@ public class WebcamHandle {
 
 		window = new JFrame("FOZ Webcam");
 		window.setType(javax.swing.JFrame.Type.UTILITY);
-		
+		window.setAlwaysOnTop(true);
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice defaultScreen = ge.getDefaultScreenDevice();
         Rectangle rect = defaultScreen.getDefaultConfiguration().getBounds();

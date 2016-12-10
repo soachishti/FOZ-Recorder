@@ -1,3 +1,2 @@
-*.wav
-tmp/*
-*.jpg
+
+/bin/

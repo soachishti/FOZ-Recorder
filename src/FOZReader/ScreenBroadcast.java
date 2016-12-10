@@ -29,11 +29,17 @@ class MyIndexHandler implements HttpHandler {
 }
 
 class MyImageHandler implements HttpHandler {
+	String tmpDir;
+	
+	public MyImageHandler(String dir) {
+		tmpDir = dir;
+	}
+	
 	public void handle(HttpExchange t) throws IOException {
 		Headers h = t.getResponseHeaders();
 		h.add("Content-Type", "image/jpg");
 
-		File file = new File ("current.jpg");
+		File file = new File (tmpDir + "current.jpg");
 		byte [] bytearray  = new byte [(int)file.length()];
 		FileInputStream fis = new FileInputStream(file);
 		BufferedInputStream bis = new BufferedInputStream(fis);
@@ -47,9 +53,10 @@ class MyImageHandler implements HttpHandler {
 }
 
 public class ScreenBroadcast {
-	int port = 7000;
+	int port = 7881;
 	String address;
 	HttpServer server;
+	String tmpDir;
 	
 	public void setAddress(String a) {
 		address = a;
@@ -57,6 +64,10 @@ public class ScreenBroadcast {
 	
 	public void setPort(int p) {
 		port = p;
+	}
+	
+	public void setTmpDir(String tmp) {
+		tmpDir = tmp;
 	}
 	
 	public String getIPAddress() {
@@ -78,7 +89,7 @@ public class ScreenBroadcast {
 			e.printStackTrace();
 		}
 		server.createContext("/", new MyIndexHandler());
-		server.createContext("/image.jpg", new MyImageHandler());
+		server.createContext("/image.jpg", new MyImageHandler(tmpDir));
 		server.setExecutor(null); // creates a default executor
 		server.start();
 	}
